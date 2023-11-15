@@ -67,15 +67,10 @@ export const loginAdmin = async (req, res) => {
         httpOnly: false,
       }
        */
-
-      const minutes = 30;
-      const ms = minutes * 60 * 1000;
-      const expiryDate = new Date(Date.now() + ms);
-
+      
       res.cookie("token", token, {
         sameSite: "none",
         secure: true,
-        expires: expiryDate,
       });
       res.json(usuarioFound);
     } else res.status(400).json({ message: ["Usuario no autorizado."] });
