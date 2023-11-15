@@ -33,7 +33,7 @@ export const login = async (req, res) => {
       sameSite: 'none',
       secure: true
     });
-    
+
     res.json(usuarioFound);
   } catch (error) {
     console.log(error);
