@@ -31,22 +31,7 @@ const app = express();
   })
 );*/
 
-// enable cors
-app.use(
-  cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
-app.options(
-  '*',
-  cors({
-    origin: true,
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
+cors({credentials: true, origin: true, exposedHeaders: '*'})
 
 app.use(morgan("dev"));
 //app.use(express.urlencoded({ extended: true }));
