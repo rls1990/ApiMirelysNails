@@ -31,17 +31,22 @@ const app = express();
   })
 );*/
 
-app.use(cors({
-  origin:"https://mirelysnailsadmin.onrender.com",
-  credentials:true,
-}));
- 
-app.use(function(req, res, next) {
-   res.header("Access-Control-Allow-Origin", "https://mirelysnailsadmin.onrender.com");
-   res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
-   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   next();
-});
+// enable cors
+app.use(
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
+app.options(
+  '*',
+  cors({
+    origin: true,
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
 
 app.use(morgan("dev"));
 //app.use(express.urlencoded({ extended: true }));
