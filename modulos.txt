@@ -1,0 +1,38 @@
+minuto 39:49 --- encriptar contrasena >>> bcript
+
+minuto 42:00 --- web token >>> jsonwebtoken
+
+01:02:55 --- validar token proteger rutas o acceder aellas solamente cuando el usuario este autentificado
+
+01:02:47 cookie-parser
+
+01:30:00 tarea
+
+01:40:26 validacion de datos libreria express-validator o zod 
+
+cors >>> para comunicacion con el servidor
+rimraf -D >>> eliminar carpetas 
+ncp -D >>> copiar archivos
+express-fileupload
+dotenv >>> define variables de entorno
+multer>>> recivir ficheros
+sharp>>> redimencionar imagenes
+
+//*********************************************************************
+
+01:57:47 Configuracion del cliente
+
+>>> npm create vite
+pide nombre proyecto
+>selecionar react
+>seleccionar Javascript
+>>> npm install o yarn install
+
+framework css tailwind css
+
+ 
+react-hook-form >>> validar los datos del formulario
+
+axios >>> para realizar peticiones al servidor
+
+
