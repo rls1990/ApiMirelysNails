@@ -31,8 +31,19 @@ const app = express();
   })
 );*/
 
-app.use(
+/*app.use(
   cors({credentials: true, origin: "https://mirelysnailsadmin.onrender.com", exposedHeaders: '*'})
+);*/
+
+app.use(
+  cors({
+    credentials: true,
+    preflightContinue: true,
+    optionsSuccessStatus: 200,
+    origin: process.env.REACT_APP_CLIENT_POINT,
+    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "HEAD", "PATCH", "DELETE"],
+  })
 );
 
 
