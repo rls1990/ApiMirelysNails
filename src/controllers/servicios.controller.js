@@ -58,8 +58,8 @@ export const createServicio = async (req, res) => {
       const from = buffer;
       const to = __servicios;
       Promise.all([
-        resizeImage(from, to + "medium-" + filename, 500),
-        resizeImage(from, to + "large-" + filename, 1024),
+        resizeImage(from, to + "/medium-" + filename, 500),
+        resizeImage(from, to + "/large-" + filename, 1024),
       ]).then(() => console.log("Imagenes copiadas."));
     }
 
