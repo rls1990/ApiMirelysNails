@@ -32,7 +32,7 @@ const app = express();
 );*/
 
 app.use(
-  cors({credentials: true, origin: true, exposedHeaders: '*'})
+  cors({credentials: true, origin: "https://mirelysnailsadmin.onrender.com", exposedHeaders: '*'})
 );
 
 
