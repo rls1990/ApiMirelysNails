@@ -18,7 +18,7 @@ import mailRoutes from "./routes/mail.routes.js";
 
 //const url = ["http://localhost:5173", "http://localhost:5174", "http://192.168.157.65:5173"];
 
-const url = ["https://mirelysnailsadmin.onrender.com"];
+const url = ["https://mirelysnailsadmin.onrender.com","https://36986729.adminbuidmirelisnails.pages.dev"];
 
 const app = express();
 
@@ -35,16 +35,23 @@ const app = express();
   cors({credentials: true, origin: "https://mirelysnailsadmin.onrender.com", exposedHeaders: '*'})
 );*/
 
-app.use(
+/*app.use(
   cors({
     origin: 'https://mirelysnailsadmin.onrender.com',
      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
      allowedHeaders: 'Content-Type,Authorization',
      credentials:true
   })
+);*/
+app.use(
+  cors({
+    origin: true,
+    url,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true,
+  })
 );
-
-
 
 app.use(morgan("dev"));
 //app.use(express.urlencoded({ extended: true }));
