@@ -58,8 +58,10 @@ export const createServicio = async (req, res) => {
       const from = buffer;
       const to = __servicios;
       Promise.all([
-        resizeImage(from, to + "/medium-" + filename, 500),
-        resizeImage(from, to + "/large-" + filename, 1024),
+        //resizeImage(from, to + "/medium-" + filename, 500),
+        resizeImage(from, path.resolve(to,"medium-" + filename), 500),
+        //resizeImage(from, to + "/large-" + filename, 1024),
+        resizeImage(from, path.resolve(to,"large-" + filename), 1024),
       ]).then(() => console.log("Imagenes copiadas."));
     }
 
@@ -104,10 +106,10 @@ export const updateServicio = async (req, res) => {
       const from = buffer;
       const to = __servicios;
       Promise.all([
-        deleteFile(__servicios + "medium-" + lastFileName),
-        deleteFile(__servicios + "large-" + lastFileName),
-        resizeImage(from, to + "medium-" + filename, 500),
-        resizeImage(from, to + "large-" + filename, 1024),
+        deleteFile(__servicios + "/medium-" + lastFileName),
+        deleteFile(__servicios + "/large-" + lastFileName),
+        resizeImage(from, to + "/medium-" + filename, 500),
+        resizeImage(from, to + "/large-" + filename, 1024),
       ]).then(() => console.log("Imagen actualizada."));
     }
 
@@ -128,8 +130,8 @@ export const deleteServicio = async (req, res) => {
     const filename = servicio.imagen;
 
     Promise.all([
-      deleteFile(__servicios + "medium-" + filename),
-      deleteFile(__servicios + "large-" + filename),
+      deleteFile(__servicios + "/medium-" + filename),
+      deleteFile(__servicios + "/large-" + filename),
     ]).then(() => console.log("Imagen eliminada."));
 
     const galeria = await Galeria.find({ servicio: servicio._id });
@@ -138,7 +140,7 @@ export const deleteServicio = async (req, res) => {
       galeria.forEach((img) => {
         Promise.all([
           Galeria.findByIdAndDelete(img._id),
-          deleteFile(__galeria + img.imagen),
+          deleteFile(__galeria + "/"+img.imagen),
         ]).then(() => console.log("Imagen eliminada."));
       });
     }
