@@ -40,7 +40,7 @@ app.use(
     credentials: true,
     preflightContinue: true,
     optionsSuccessStatus: 200,
-    origin: process.env.REACT_APP_CLIENT_POINT,
+    origin: "https://mirelysnailsadmin.onrender.com",
     allowedHeaders: ["Content-Type", "Authorization"],
     methods: ["GET", "POST", "PUT", "HEAD", "PATCH", "DELETE"],
   })
