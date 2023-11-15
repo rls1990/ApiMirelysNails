@@ -18,7 +18,7 @@ import mailRoutes from "./routes/mail.routes.js";
 
 //const url = ["http://localhost:5173", "http://localhost:5174", "http://192.168.157.65:5173"];
 
-const url = ["https://adminbuidmirelisnails.pages.dev","*"];
+const url = ["https://mirelysnailsadmin.onrender.com/"];
 
 const app = express();
 
