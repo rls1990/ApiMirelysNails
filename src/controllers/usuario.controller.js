@@ -59,7 +59,7 @@ export const loginAdmin = async (req, res) => {
         return res.status(400).json({ message: ["Credenciales incorrectas."] });
       }
       const token = await createAccessToken({ id: usuarioFound.id });
-      res.cookie("token", token);
+      //res.cookie("token", token);
       /** Otras propiedades
         {
         sameSite: "none",
@@ -67,6 +67,11 @@ export const loginAdmin = async (req, res) => {
         httpOnly: false,
       }
        */
+
+      res.cookie("token", token, {
+        sameSite: 'none',
+        secure: true
+      });
       res.json(usuarioFound);
     } else res.status(400).json({ message: ["Usuario no autorizado."] });
   } catch (error) {
