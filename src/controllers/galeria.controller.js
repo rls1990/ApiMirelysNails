@@ -81,7 +81,7 @@ export const uploadImage = async (req, res) => {
 
       const itemsave = await item.save();
 
-      Promise.all([resizeImage(from, to + filename, 1024)]).then(() =>
+      Promise.all([resizeImage(from,path.resolve( to ,filename), 1024)]).then(() =>
         console.log("Imagen copiada.")
       );
 
@@ -126,8 +126,8 @@ export const updateImage = async (req, res) => {
       const from = buffer;
       const to = __galeria;
       Promise.all([
-        deleteFile(__galeria + lastFileName),
-        resizeImage(from, to + filename, 1024),
+        deleteFile(path.resolve(__galeria , lastFileName)),
+        resizeImage(from, path.resolve(to , filename), 1024),
       ]).then(() => console.log("Imagen copiada."));
     }
 
@@ -146,7 +146,7 @@ export const deleteImage = async (req, res) => {
 
     const item = await Galeria.findByIdAndDelete(id);
 
-    Promise.all([deleteFile(__galeria + item.imagen)]).then(() =>
+    Promise.all([deleteFile(path.resolve(__galeria , item.imagen))]).then(() =>
       console.log("Imagen eliminada.")
     );
 

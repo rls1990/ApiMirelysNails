@@ -54,8 +54,8 @@ export const create = async (req, res) => {
       const from = buffer;
       const to = __carruselhome;
       Promise.all([
-        resizeImage(from, to + "/medium-" + filename, 500),
-        resizeImage(from, to + "/large-" + filename, 1024),
+        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        resizeImage(from, path.resolve(to , "large-" + filename), 1024),
       ]).then(() => console.log("Imagenes copiadas."));
     }
 
@@ -100,10 +100,10 @@ export const update = async (req, res) => {
       const from = buffer;
       const to = __carruselhome;
       Promise.all([
-        deleteFile(__carruselhome + "/medium-" + lastFileName),
-        deleteFile(__carruselhome + "/large-" + lastFileName),
-        resizeImage(from, to + "/medium-" + filename, 500),
-        resizeImage(from, to + "/large-" + filename, 1024),
+        deleteFile(path.resolve(__carruselhome , "medium-" + lastFileName)),
+        deleteFile(path.resolve(__carruselhome , "large-" + lastFileName)),
+        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        resizeImage(from, path.resolve(to , "large-" + filename), 1024),
       ]).then(() => console.log("Imagen actualizada."));
     }
 
@@ -124,8 +124,8 @@ export const deleteImg = async (req, res) => {
     const filename = item.imagen;
 
     Promise.all([
-      deleteFile(__carruselhome + "medium-" + filename),
-      deleteFile(__carruselhome + "large-" + filename),
+      deleteFile(path.resolve(__carruselhome ,"medium-" + filename)),
+      deleteFile(path.resolve(__carruselhome , "large-" + filename)),
     ]).then(() => console.log("Imagen eliminada."));
 
     res.json({ message: ["Servicio Eliminado."] });

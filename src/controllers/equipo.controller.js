@@ -57,8 +57,8 @@ export const create = async (req, res) => {
       const from = buffer;
       const to = __equipo;
       Promise.all([
-        resizeImage(from, to + "medium-" + filename, 500),
-        resizeImage(from, to + "large-" + filename, 1024),
+        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        resizeImage(from, path.resolve(to , "large-" + filename), 1024),
       ]).then(() => console.log("Imagenes copiadas."));
     }
 
@@ -105,10 +105,10 @@ export const update = async (req, res) => {
       const from = buffer;
       const to = __equipo;
       Promise.all([
-        deleteFile(to + "medium-" + lastFileName),
-        deleteFile(to + "large-" + lastFileName),
-        resizeImage(from, to + "medium-" + filename, 500),
-        resizeImage(from, to + "large-" + filename, 1024),
+        deleteFile(path.resolve(to , "medium-" + lastFileName)),
+        deleteFile(path.resolve(to , "large-" + lastFileName)),
+        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        resizeImage(from, path.resolve(to , "large-" + filename), 1024),
       ]).then(() => console.log("Imagen actualizada."));
     }
 
@@ -129,8 +129,8 @@ export const deleteEquip = async (req, res) => {
     const filename = item.imagen;
 
     Promise.all([
-      deleteFile(__equipo + "medium-" + filename),
-      deleteFile(__equipo + "large-" + filename),
+      deleteFile(path.resolve(__equipo , "medium-" + filename)),
+      deleteFile(path.resolve(__equipo , "large-" + filename)),
     ]).then(() => console.log("Imagen eliminada."));
 
     const diploma = await Diploma.find({ miembro: item._id });
@@ -139,7 +139,7 @@ export const deleteEquip = async (req, res) => {
       diploma.forEach((img) => {
         Promise.all([
           Diploma.findByIdAndDelete(img._id),
-          deleteFile(__diplomas + img.imagen),
+          deleteFile(path.resolve(__diplomas , img.imagen)),
         ]).then(() => console.log("Imagen eliminada."));
       });
     }

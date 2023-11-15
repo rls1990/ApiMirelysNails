@@ -55,7 +55,7 @@ export const create = async (req, res) => {
     if (req.file) {
       const from = buffer;
       const to = __testimonios;
-      Promise.all([resizeImage(from, to + filename, 500)]).then(() =>
+      Promise.all([resizeImage(from, path.resolve(to , filename), 500)]).then(() =>
         console.log("Imagen copiada.")
       );
     }
@@ -102,8 +102,8 @@ export const update = async (req, res) => {
       const from = buffer;
       const to = __testimonios;
       Promise.all([
-        deleteFile(to + lastFileName),
-        resizeImage(from, to + filename, 500),
+        deleteFile(path.resolve(to , lastFileName)),
+        resizeImage(from, path.resolve(to , filename), 500),
       ]).then(() => console.log("Imagen actualizada."));
     }
 
@@ -123,7 +123,7 @@ export const deleteTestim = async (req, res) => {
     const item = await Testimonio.findByIdAndDelete(id);
     const filename = item.foto;
 
-    Promise.all([deleteFile(__testimonios + filename)]).then(() =>
+    Promise.all([deleteFile(path.resolve(__testimonios , filename))]).then(() =>
       console.log("Imagen eliminada.")
     );
 
