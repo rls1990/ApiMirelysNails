@@ -67,11 +67,14 @@ export const loginAdmin = async (req, res) => {
         httpOnly: false,
       }
        */
-      
+
       res.cookie("token", token, {
         sameSite: "none",
+        httpOnly: false,
         secure: true,
+        maxAge: 1800000,
       });
+
       res.json(usuarioFound);
     } else res.status(400).json({ message: ["Usuario no autorizado."] });
   } catch (error) {
@@ -210,8 +213,8 @@ export const createUser = async (req, res) => {
       const from = buffer;
       const to = __usuarios;
       Promise.all([
-        resizeImage(from, path.resolve(to , "small-" + filename), 100),
-        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        resizeImage(from, path.resolve(to, "small-" + filename), 100),
+        resizeImage(from, path.resolve(to, "medium-" + filename), 500),
       ]).then(() => console.log("Imagenes copiadas."));
     }
 
@@ -257,10 +260,10 @@ export const updateUser = async (req, res) => {
       const from = buffer;
       const to = __usuarios;
       Promise.all([
-        deleteFile(path.resolve(__usuarios , "small-" + lastFileName)),
-        deleteFile(path.resolve(__usuarios , "medium-" + lastFileName)),
-        resizeImage(from, path.resolve(to , "small-" + filename), 100),
-        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        deleteFile(path.resolve(__usuarios, "small-" + lastFileName)),
+        deleteFile(path.resolve(__usuarios, "medium-" + lastFileName)),
+        resizeImage(from, path.resolve(to, "small-" + filename), 100),
+        resizeImage(from, path.resolve(to, "medium-" + filename), 500),
       ]).then(() => console.log("Imagen actualizada."));
     }
 
@@ -280,8 +283,8 @@ export const deleteUser = async (req, res) => {
 
     const filename = user.foto;
     Promise.all([
-      deleteFile(path.resolve(__usuarios , "small-" + filename)),
-      deleteFile(path.resolve(__usuarios , "medium-" + filename)),
+      deleteFile(path.resolve(__usuarios, "small-" + filename)),
+      deleteFile(path.resolve(__usuarios, "medium-" + filename)),
     ]).then(() => console.log("Tarea terminada."));
 
     res.json({ message: ["Usuario eliminado."] });
@@ -327,10 +330,10 @@ export const uploadFotoPerfil = async (req, res) => {
       const to = __usuarios;
 
       Promise.all([
-        deleteFile(path.resolve(__usuarios , "small-" + user.foto)),
-        deleteFile(path.resolve(__usuarios , "medium-" + user.foto)),
-        resizeImage(from, path.resolve(to , "small-" + filename), 100),
-        resizeImage(from, path.resolve(to , "medium-" + filename), 500),
+        deleteFile(path.resolve(__usuarios, "small-" + user.foto)),
+        deleteFile(path.resolve(__usuarios, "medium-" + user.foto)),
+        resizeImage(from, path.resolve(to, "small-" + filename), 100),
+        resizeImage(from, path.resolve(to, "medium-" + filename), 500),
       ]).then(() => console.log("Imagenes copiadas."));
 
       user.foto = filename;
