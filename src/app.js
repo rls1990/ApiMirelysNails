@@ -18,31 +18,16 @@ import mailRoutes from "./routes/mail.routes.js";
 
 //const url = ["http://localhost:5173", "http://localhost:5174", "http://192.168.157.65:5173"];
 
-const url = ["https://mirelysnailsadmin.onrender.com","https://36986729.adminbuidmirelisnails.pages.dev"];
+const url = [
+  // "https://mirelysnailsadmin.onrender.com",
+  //"https://36986729.adminbuidmirelisnails.pages.dev",
+  "http://localhost:5174",
+  "http://localhost:5173",
+];
 
 const app = express();
 
 //middleware
-/*app.use(
-  cors({
-    origin: true,
-    url,
-    credentials: true,
-  })
-);*/
-
-/*app.use(
-  cors({credentials: true, origin: "https://mirelysnailsadmin.onrender.com", exposedHeaders: '*'})
-);*/
-
-/*app.use(
-  cors({
-    origin: 'https://mirelysnailsadmin.onrender.com',
-     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-     allowedHeaders: 'Content-Type,Authorization',
-     credentials:true
-  })
-);*/
 app.use(
   cors({
     origin: true,
